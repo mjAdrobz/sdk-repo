@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class Api {
 
-    private static final String BASE_URL = "https://jsonplaceholder.typicode.com/";
+    private static final String BASE_URL = "https://dbcsm.contegris.com:50000/cx9dev/social/api/";
 
     public static void httpGetDataRequest(Context context, String url, ResponseCallback callback) {
 
