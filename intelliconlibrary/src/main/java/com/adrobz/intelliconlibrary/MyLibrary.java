@@ -11,6 +11,9 @@ import com.adrobz.intelliconlibrary.Interface.ResponseCallback;
 import com.adrobz.intelliconlibrary.Socket.SocketHandler;
 
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -79,37 +82,54 @@ public class MyLibrary {
     };
 
     public void initiateChat(String message) {
-        Map<String, String> params = new HashMap<>();
-        params.put("Text", message);
-        params.put("cid", "");
-        mSocket.emit("letsChat", params);
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("text", message);
+            obj.put("cid", "");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        mSocket.emit("letsChat", obj);
     }
 
     public void sendMessage(String message, String cId) {
-        Map<String, String> params = new HashMap<>();
-        params.put("Text", message);
-        params.put("cid", cId);
-        mSocket.emit("message", params);
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("text", message);
+            obj.put("cid", cId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        mSocket.emit("message", obj);
     }
 
-    public void fetchConversation(String userId, SocketInterface callback) {
-        Map<String, String> params = new HashMap<>();
-        params.put("userId", userId);
-        Log.d("userID", params.toString());
-        var user = "{\n" + "\"userId\":\"" + userId + "\"\n" + "}";
-        Log.d("user", user);
-        Emitter.Listener onNewMessage = args -> callback.onResponse(args[0].toString());
-        mSocket.emit("fetchConversation", user).on("fetchConversationResponse", onNewMessage);
+    public void fetchUserConversation(String userId, SocketInterface callback) {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("userId", userId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        mSocket.emit("fetchConversation", obj);
     }
 
     public void fetchConversationResponse(SocketInterface callback) {
-        Emitter.Listener onNewMessage = args -> callback.onResponse(args[0].toString());
+        Emitter.Listener onNewMessage = args -> {
+            callback.onResponse(args[0].toString());
+        };
         mSocket.on("fetchConversationResponse", onNewMessage);
     }
 
     public void fetchMessage(SocketInterface callback) {
         Emitter.Listener onNewMessage = args -> callback.onResponse(args[0].toString());
         mSocket.on("message", onNewMessage);
+    }
+
+    public void letsChatResponse(SocketInterface callback) {
+        Emitter.Listener letsChatResponse = args -> {
+            callback.onResponse(args[0].toString());
+        };
+        mSocket.on("letsChatResponse", letsChatResponse);
     }
 
 }
