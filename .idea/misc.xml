@@ -3,9 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/chat_admin_bubble.xml" value="0.14444444444444443" />
+        <entry key="app/src/main/res/drawable/chat_user_bubble.xml" value="0.14444444444444443" />
         <entry key="app/src/main/res/layout/activity_chat.xml" value="0.11548913043478261" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19927536231884058" />
-        <entry key="app/src/main/res/layout/chat_item_layout.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/chat_item_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/option_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/option_item_layout.xml" value="0.1" />
       </map>
     </option>
   </component>

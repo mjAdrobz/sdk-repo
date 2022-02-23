@@ -23,9 +23,9 @@ import io.socket.emitter.Emitter;
 public class MyLibrary {
 
     public Socket mSocket;
-    final Activity mContext;
+    final Context mContext;
 
-    public MyLibrary(Activity mContext) {
+    public MyLibrary(Context mContext) {
         this.mContext = mContext;
     }
 
@@ -90,6 +90,7 @@ public class MyLibrary {
             e.printStackTrace();
         }
         mSocket.emit("letsChat", obj);
+        Log.d("letsChat","letsChat is calling");
     }
 
     public void sendMessage(String message, String cId) {

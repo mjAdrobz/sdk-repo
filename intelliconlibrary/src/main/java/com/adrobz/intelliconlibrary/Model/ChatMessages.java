@@ -1,9 +1,13 @@
 package com.adrobz.intelliconlibrary.Model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ChatMessages {
     String author;
     String text;
     String cid;
+    ArrayList<String> options;
 
     public String getAuthor() {
         return author;
@@ -27,5 +31,13 @@ public class ChatMessages {
 
     public void setCid(String cid) {
         this.cid = cid;
+    }
+
+    public ArrayList<String> getOptions() {
+        return options;
+    }
+
+    public void setOptions(ArrayList<String> options) {
+        this.options = options;
     }
 }
