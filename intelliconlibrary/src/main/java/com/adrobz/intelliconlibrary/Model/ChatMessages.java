@@ -8,6 +8,7 @@ public class ChatMessages {
     String text;
     String cid;
     ArrayList<String> options;
+    Attachment attachment;
 
     public String getAuthor() {
         return author;
@@ -39,5 +40,13 @@ public class ChatMessages {
 
     public void setOptions(ArrayList<String> options) {
         this.options = options;
+    }
+
+    public Attachment getAttachment() {
+        return attachment;
+    }
+
+    public void setAttachment(Attachment attachment) {
+        this.attachment = attachment;
     }
 }

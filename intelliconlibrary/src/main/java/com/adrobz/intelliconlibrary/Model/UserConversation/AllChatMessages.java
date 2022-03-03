@@ -1,5 +1,7 @@
 package com.adrobz.intelliconlibrary.Model.UserConversation;
 
+import com.adrobz.intelliconlibrary.Model.Attachment;
+import com.adrobz.intelliconlibrary.Model.Payload;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -21,6 +23,10 @@ public class AllChatMessages {
     public ArrayList<AllReadMessages> read;
     @SerializedName("id")
     public String id;
+    @SerializedName("attachment")
+    public Attachment attachment;
+    @SerializedName("payload")
+    public Payload payload;
 
     public ArrayList<String> getOptions() {
         return options;
@@ -76,5 +82,21 @@ public class AllChatMessages {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Attachment getAttachment() {
+        return attachment;
+    }
+
+    public void setAttachment(Attachment attachment) {
+        this.attachment = attachment;
+    }
+
+    public Payload getPayload() {
+        return payload;
+    }
+
+    public void setPayload(Payload payload) {
+        this.payload = payload;
     }
 }

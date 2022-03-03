@@ -1,6 +1,5 @@
 package com.adrobz.intelliconlibrary;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
@@ -90,14 +89,36 @@ public class MyLibrary {
             e.printStackTrace();
         }
         mSocket.emit("letsChat", obj);
-        Log.d("letsChat","letsChat is calling");
+        Log.d("letsChat", "letsChat is calling");
     }
 
     public void sendMessage(String message, String cId) {
         JSONObject obj = new JSONObject();
         try {
-            obj.put("text", message);
+                obj.put("text", message);
+                obj.put("cid", cId);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        mSocket.emit("message", obj);
+    }
+
+    public void sendAttachment(String cId, String type, String filename, String imageUrl) {
+        JSONObject obj = new JSONObject();
+        JSONObject attachment = new JSONObject();
+        JSONObject payload = new JSONObject();
+        try {
+            obj.put("text", "");
             obj.put("cid", cId);
+            obj.put("attachment", attachment);
+            attachment.put("type", type);
+            attachment.put("payload", payload);
+            payload.put("filename", filename);
+            payload.put("url", imageUrl);
+            payload.put("name", filename);
+            Log.d("attachmentObject",obj.toString());
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -122,7 +143,9 @@ public class MyLibrary {
     }
 
     public void fetchMessage(SocketInterface callback) {
-        Emitter.Listener onNewMessage = args -> callback.onResponse(args[0].toString());
+        Emitter.Listener onNewMessage = args ->{
+            callback.onResponse(args[0].toString());
+        };
         mSocket.on("message", onNewMessage);
     }
 
