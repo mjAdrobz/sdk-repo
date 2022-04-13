@@ -69,14 +69,14 @@ public class MyLibrary {
     }
 
     public Emitter.Listener onConnect = args -> {
-        Log.d("Hello socket", "My Library Socket Connected!");
+        Log.d("connected", "My Library Socket Connected!");
     };
 
     public final Emitter.Listener onConnectError = args -> {
         Log.d("error", args[0] + "");
     };
     public final Emitter.Listener onDisconnect = args -> {
-        Log.d("mSocket.id() Disco", mSocket.id() + "");
+        Log.d("mSocket.id()", mSocket.id() + "");
         Log.d("TAG", "Socket Disconnected!");
     };
 
@@ -89,7 +89,6 @@ public class MyLibrary {
             e.printStackTrace();
         }
         mSocket.emit("letsChat", obj);
-        Log.d("letsChat", "letsChat is calling");
     }
 
     public void sendMessage(String message, String cId) {
